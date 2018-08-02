@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Flight;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -18,8 +17,7 @@ class FlightController extends Controller
     /**
      * Lists all flight entities.
      *
-     * @Route("/", name="flight_index")
-     * @Method("GET")
+     * @Route("/", name="flight_index", methods="GET")
      */
     public function indexAction()
     {
@@ -35,8 +33,7 @@ class FlightController extends Controller
     /**
      * Creates a new flight entity.
      *
-     * @Route("/new", name="flight_new")
-     * @Method({"GET", "POST"})
+     * @Route("/new", name="flight_new", methods={"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -61,8 +58,7 @@ class FlightController extends Controller
     /**
      * Finds and displays a flight entity.
      *
-     * @Route("/{id}", name="flight_show")
-     * @Method("GET")
+     * @Route("/{id}", name="flight_show", methods="GET")
      */
     public function showAction(Flight $flight)
     {
@@ -77,8 +73,7 @@ class FlightController extends Controller
     /**
      * Displays a form to edit an existing flight entity.
      *
-     * @Route("/{id}/edit", name="flight_edit")
-     * @Method({"GET", "POST"})
+     * @Route("/{id}/edit", name="flight_edit", methods={"GET", "POST"})
      */
     public function editAction(Request $request, Flight $flight)
     {
@@ -102,8 +97,7 @@ class FlightController extends Controller
     /**
      * Deletes a flight entity.
      *
-     * @Route("/{id}", name="flight_delete")
-     * @Method("DELETE")
+     * @Route("/{id}", name="flight_delete", methods="DELETE")
      */
     public function deleteAction(Request $request, Flight $flight)
     {

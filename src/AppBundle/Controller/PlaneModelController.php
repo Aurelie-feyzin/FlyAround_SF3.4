@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\PlaneModel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -18,8 +17,7 @@ class PlaneModelController extends Controller
     /**
      * Lists all planeModel entities.
      *
-     * @Route("/", name="planemodel_index")
-     * @Method("GET")
+     * @Route("/", name="planemodel_index", methods="GET")
      */
     public function indexAction()
     {
@@ -35,8 +33,7 @@ class PlaneModelController extends Controller
     /**
      * Creates a new planeModel entity.
      *
-     * @Route("/new", name="planemodel_new")
-     * @Method({"GET", "POST"})
+     * @Route("/new", name="planemodel_new", methods={"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -61,8 +58,7 @@ class PlaneModelController extends Controller
     /**
      * Finds and displays a planeModel entity.
      *
-     * @Route("/{id}", name="planemodel_show")
-     * @Method("GET")
+     * @Route("/{id}", name="planemodel_show", methods="GET")
      */
     public function showAction(PlaneModel $planeModel)
     {
@@ -77,8 +73,7 @@ class PlaneModelController extends Controller
     /**
      * Displays a form to edit an existing planeModel entity.
      *
-     * @Route("/{id}/edit", name="planemodel_edit")
-     * @Method({"GET", "POST"})
+     * @Route("/{id}/edit", name="planemodel_edit", methods={"GET", "POST"})
      */
     public function editAction(Request $request, PlaneModel $planeModel)
     {
@@ -102,8 +97,7 @@ class PlaneModelController extends Controller
     /**
      * Deletes a planeModel entity.
      *
-     * @Route("/{id}", name="planemodel_delete")
-     * @Method("DELETE")
+     * @Route("/{id}", name="planemodel_delete", methods="DELETE")
      */
     public function deleteAction(Request $request, PlaneModel $planeModel)
     {

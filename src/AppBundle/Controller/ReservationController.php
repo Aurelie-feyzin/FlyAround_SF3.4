@@ -4,9 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Reservation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Reservation controller.
@@ -18,8 +17,7 @@ class ReservationController extends Controller
     /**
      * Lists all reservation entities.
      *
-     * @Route("/", name="reservation_index")
-     * @Method("GET")
+     * @Route("/", name="reservation_index", methods={"GET"})
      */
     public function indexAction()
     {
@@ -35,8 +33,7 @@ class ReservationController extends Controller
     /**
      * Creates a new reservation entity.
      *
-     * @Route("/new", name="reservation_new")
-     * @Method({"GET", "POST"})
+     * @Route("/new", name="reservation_new", methods={"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -61,8 +58,7 @@ class ReservationController extends Controller
     /**
      * Finds and displays a reservation entity.
      *
-     * @Route("/{id}", name="reservation_show")
-     * @Method("GET")
+     * @Route("/{id}", name="reservation_show", methods={"GET"})
      */
     public function showAction(Reservation $reservation)
     {
@@ -77,8 +73,7 @@ class ReservationController extends Controller
     /**
      * Displays a form to edit an existing reservation entity.
      *
-     * @Route("/{id}/edit", name="reservation_edit")
-     * @Method({"GET", "POST"})
+     * @Route("/{id}/edit", name="reservation_edit", methods={"GET", "POST"})
      */
     public function editAction(Request $request, Reservation $reservation)
     {
@@ -102,8 +97,7 @@ class ReservationController extends Controller
     /**
      * Deletes a reservation entity.
      *
-     * @Route("/{id}", name="reservation_delete")
-     * @Method("DELETE")
+     * @Route("/{id}", name="reservation_delete", methods={"DELETE"})
      */
     public function deleteAction(Request $request, Reservation $reservation)
     {

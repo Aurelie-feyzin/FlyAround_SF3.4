@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Site;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -17,8 +16,7 @@ class SiteController extends Controller
     /**
      * Lists all site entities.
      *
-     * @Route("/", name="site_index")
-     * @Method("GET")
+     * @Route("/", name="site_index", methods="GET")
      */
     public function indexAction()
     {
@@ -34,8 +32,7 @@ class SiteController extends Controller
     /**
      * Finds and displays a site entity.
      *
-     * @Route("/{id}", name="site_show")
-     * @Method("GET")
+     * @Route("/{id}", name="site_show", methods="GET")
      */
     public function showAction(Site $site)
     {

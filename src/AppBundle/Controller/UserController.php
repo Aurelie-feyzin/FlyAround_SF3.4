@@ -18,8 +18,7 @@ class UserController extends Controller
     /**
      * Lists all user entities.
      *
-     * @Route("/", name="user_index")
-     * @Method("GET")
+     * @Route("/", name="user_index", methods="GET")
      */
     public function indexAction()
     {
@@ -35,8 +34,7 @@ class UserController extends Controller
     /**
      * Creates a new user entity.
      *
-     * @Route("/new", name="user_new")
-     * @Method({"GET", "POST"})
+     * @Route("/new", name="user_new", methods={"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -61,8 +59,7 @@ class UserController extends Controller
     /**
      * Finds and displays a user entity.
      *
-     * @Route("/{id}", name="user_show")
-     * @Method("GET")
+     * @Route("/{id}", name="user_show", methods="GET")
      */
     public function showAction(User $user)
     {
@@ -77,8 +74,7 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing user entity.
      *
-     * @Route("/{id}/edit", name="user_edit")
-     * @Method({"GET", "POST"})
+     * @Route("/{id}/edit", name="user_edit", methods={"GET", "POST"})
      */
     public function editAction(Request $request, User $user)
     {
@@ -102,8 +98,7 @@ class UserController extends Controller
     /**
      * Deletes a user entity.
      *
-     * @Route("/{id}", name="user_delete")
-     * @Method("DELETE")
+     * @Route("/{id}", name="user_delete", methods="DELETE")
      */
     public function deleteAction(Request $request, User $user)
     {

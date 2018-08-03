@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Flight;
+use AppBundle\Entity\PlaneModel;
+use AppBundle\Service\FlightInfo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,14 +61,28 @@ class FlightController extends Controller
      * Finds and displays a flight entity.
      *
      * @Route("/{id}", name="flight_show", methods="GET")
+     * @param Flight $flight
+     * @param FlightInfo $flightInfo
+     * @param PlaneModel $planeModel
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction(Flight $flight)
+    public function showAction(Flight $flight, FlightInfo $flightInfo)
     {
         $deleteForm = $this->createDeleteForm($flight);
+
+        //Calculate a flight distance between departure and arrival
+        $distance = $flightInfo->getDistance($flight->getDeparture()->getLatitude(),
+            $flight->getDeparture()->getLongitude(),
+            $flight->getArrival()->getLatitude(),
+            $flight->getArrival()->getLongitude());
+
+        $time = $flightInfo->getTime($flight->getPlane()->getCruiseSpeed(), $distance);
 
         return $this->render('flight/show.html.twig', array(
             'flight' => $flight,
             'delete_form' => $deleteForm->createView(),
+            'distance' => $distance,
+            'time' => $time,
         ));
     }
 

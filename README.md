@@ -29,3 +29,5 @@ Part4 : Add route manually
 Part5 : Add manually a Form 
 
 Part6 : Add a service 
+
+Part7 : Install Webpack Encore (SASS loader,Boostrap and Jquery)  

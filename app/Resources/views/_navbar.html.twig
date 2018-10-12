@@ -1,14 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">FlyAround</a>
+    <a class="navbar-brand" href="{{ path('homepage') }}">FlyAround</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+            {% if app.user == null%}
+                <li>
+                    <a href="{{ path('fos_user_security_login') }}" class="nav-item nav-link">S'identifier</a>
+                </li>
+                <li>
+                    <a href="{{ path('fos_user_registration_register') }}" class="nav-item nav-link">S'inscrire</a>
+                </li>
+            {% else %}
+                {% if app.user.roles[0] == constant('AppBundle\\Entity\\User::ROLE_ADMIN')%}
+                    <li>
+                        <a class="nav-item nav-link" href="{{ path('user_index') }}">les utilisateurs</a>
+                    </li>
+                {% endif %}
+                {% if app.user.roles[0] != constant('AppBundle\\Entity\\User::ROLE_ANONYMOUS')%}
+                    <a class="nav-item nav-link" href="{{ path('planemodel_index') }}">les Avions</a>
+                    <a class="nav-item nav-link" href="{{ path('reservation_index') }}">les réservations</a>
+                    <a class="nav-item nav-link" href="{{ path('flight_index') }}">les vols</a>
+                    <a class="nav-item nav-link" href="{{ path('site_index') }}">les terrains</a>
+                    <a class="nav-item nav-link" href="{{ path('review_index') }}">les avis</a>
+                    <a class="nav-item nav-link" href="{{ path('user_show',{'id':app.user.id}) }}">Mon compte</a>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 </nav>

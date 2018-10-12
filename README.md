@@ -14,7 +14,7 @@ PHP 7.1 / Symfony 3.4 / Doctrine / MYSQL
     * Php 7.1 or higher             http://php.net/downloads.php
     * MySQL                         https://dev.mysql.com/downloads/installer/
     * Symfony Installer             https://github.com/symfony/symfony-installer
-    * Composer                      https://getcomposer.org/downloa
+    * Composer                      https://getcomposer.org/download
 
 ## Step
 
@@ -31,3 +31,5 @@ Part5 : Add manually a Form
 Part6 : Add a service 
 
 Part7 : Install Webpack Encore (SASS loader,Boostrap and Jquery)  
+
+Part8 : Security with FOSUserBundle 

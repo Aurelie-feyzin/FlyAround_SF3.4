@@ -5,21 +5,40 @@
         <div id="container">
             <h1>Routes disponibles : </h1>
             <ul class="list-group">
-                <li>
-                    <a href="{{ path('planemodel_index') }}" class="list-group-item list-group-item-action">Voir les avions</a>
-                </li>
-                <li>
-                    <a href="{{ path('reservation_index') }}" class="list-group-item list-group-item-action">Voir les réservations</a>
-                </li>
-                <li>
-                    <a href="{{ path('flight_index') }}" class="list-group-item list-group-item-action">Voir les vols</a>
-                </li>
-                <li>
-                    <a href="{{ path('site_index') }}" class="list-group-item list-group-item-action">Voir les terrains</a>
-                </li>
-                <li>
-                    <a href="{{ path('review_index') }}" class="list-group-item list-group-item-action">Voir tous les avis utilisateur</a>
-                </li>
+                {% if app.user == null %}
+                    <li>
+                        <a href="{{ path('fos_user_security_login') }}" class="list-group-item list-group-item-action">S'identifier</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('fos_user_registration_register') }}" class="list-group-item list-group-item-action">S'inscrire</a>
+                    </li>
+                    {% else %}
+                    {% if app.user.roles[0]  == constant('AppBundle\\Entity\\User::ROLE_ADMIN')%}
+                        <li>
+                            <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action">Voir tous les utilisateurs</a>
+                        </li>
+                    {% endif %}
+                    {% if app.user.roles[0] != constant('AppBundle\\Entity\\User::ROLE_ANONYMOUS')%}
+                        <li>
+                            <a href="{{ path('planemodel_index') }}" class="list-group-item list-group-item-action">Voir les avions</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reservation_index') }}" class="list-group-item list-group-item-action">Voir les réservations</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('flight_index') }}" class="list-group-item list-group-item-action">Voir les vols</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('site_index') }}" class="list-group-item list-group-item-action">Voir les terrains</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('review_index') }}" class="list-group-item list-group-item-action">Voir tous les avis utilisateur</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_security_logout') }}" class="list-group-item list-group-item-action">Se déconnecter</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
             </ul>
 
         </div>

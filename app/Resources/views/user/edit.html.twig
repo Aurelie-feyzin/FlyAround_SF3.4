@@ -10,7 +10,9 @@
 
     <ul>
         <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
+            {% if app.user.roles[0] == constant('AppBundle\\Entity\\User::ROLE_ADMIN')%}
+                <a href="{{ path('user_index') }}">Back to the list</a>
+            {% endif %}
         </li>
         <li>
             {{ form_start(delete_form) }}

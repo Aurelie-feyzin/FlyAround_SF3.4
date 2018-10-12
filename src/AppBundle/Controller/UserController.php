@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * User controller.
@@ -19,6 +20,7 @@ class UserController extends Controller
      * Lists all user entities.
      *
      * @Route("/", name="user_index", methods="GET")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction()
     {
@@ -39,7 +41,7 @@ class UserController extends Controller
     public function newAction(Request $request)
     {
         $user = new User();
-        $form = $this->createForm('AppBundle\Form\UserType', $user);
+        $form = $this->createForm('AppBundle\Form\RegistrationType', $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -65,6 +67,10 @@ class UserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($user);
 
+        if ($this->getUser()->getRoles()[0] == User::ROLE_USER && $user->getId() !== $this->getUser()->getId()) {
+            return $this->redirectToRoute('user_show', array('id' => $this->getUser()->getId()));
+        }
+
         return $this->render('user/show.html.twig', array(
             'user' => $user,
             'delete_form' => $deleteForm->createView(),
@@ -79,6 +85,11 @@ class UserController extends Controller
     public function editAction(Request $request, User $user)
     {
         $deleteForm = $this->createDeleteForm($user);
+
+        if ($this->getUser()->getRoles()[0] == User::ROLE_USER && $user->getId() !== $this->getUser()->getId()) {
+            return $this->redirectToRoute('user_edit', array('id' => $this->getUser()->getId()));
+        }
+
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 
